@@ -3,7 +3,7 @@ package com.lieve.base.common.enums;
 import lombok.Getter;
 
 /**
- * @author <a> href="mailto:sunlijiang@didichuxing.com">sunlijiang</a>
+ * @author <a> href="mailto:sunyoboy@gmail.com">sunlijiang</a>
  * @version 1.0
  * @since 2018/10/13 下午7:05
  */

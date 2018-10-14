@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author <a> href="mailto:sunlijiang@didichuxing.com">sunlijiang</a>
+ * @author <a> href="mailto:sunyoboy@gmail.com">sunlijiang</a>
  * @version 1.0
  * @since 2018/10/13 下午6:43
  */

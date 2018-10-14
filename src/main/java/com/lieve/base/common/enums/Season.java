@@ -1,7 +1,7 @@
 package com.lieve.base.common.enums;
 /**
  * @version 1.0
- * @author <a> href="mailto:sunlijiang@didichuxing.com">sunlijiang</a>
+ * @author <a> href="mailto:sunyoboy@gmail.com">sunlijiang</a>
  * @since 2018/10/13 下午6:37
  */
 
