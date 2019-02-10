@@ -1,9 +1,10 @@
 package com.lieve.base.common.enums;
 
+import com.lieve.base.common.exception.InvalidValueException;
 import lombok.Getter;
 
 /**
- * @author <a> href="mailto:sunyoboy@gmail.com">sunlijiang</a>
+ * @author <a> href="mailto:sunyoboy@gmail.com">sunyoboy</a>
  * @version 1.0
  * @since 2018/10/13 下午7:05
  */
@@ -30,4 +31,17 @@ public enum Unit {
         throw new IndexOutOfBoundsException("Invalid value");
     }
 
+    public static String getName(int value) throws InvalidValueException {
+        for (Unit unit : values()) {
+            if (unit.getValue() == value) {
+                return unit.getName();
+            }
+        }
+        throw new InvalidValueException();
+    }
+
+    public static void main(String[] args) throws InvalidValueException {
+        System.out.println(getName(1));
+        System.out.println(getName(2));
+    }
 }
