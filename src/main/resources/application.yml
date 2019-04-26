@@ -1,1 +1,3 @@
-
+logging:
+  level:
+    com.lieve.base: info

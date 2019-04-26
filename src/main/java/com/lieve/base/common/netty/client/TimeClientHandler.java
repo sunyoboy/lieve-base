@@ -1,4 +1,4 @@
-package com.lieve.base.netty.client;
+package com.lieve.base.common.netty.client;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

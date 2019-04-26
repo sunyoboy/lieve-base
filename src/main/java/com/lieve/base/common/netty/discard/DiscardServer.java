@@ -17,6 +17,15 @@ public class DiscardServer {
         this.port = port;
     }
 
+    public static void main(String[] args) throws Exception {
+        int port = 8080;
+        if (args.length > 0) {
+            port = Integer.parseInt(args[0]);
+        }
+
+        new DiscardServer(port).run();
+    }
+
     public void run() throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup(); // (1)
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -39,19 +48,10 @@ public class DiscardServer {
             // Wait until the server socket is closed.
             // In this example, this does not happen, but you can do that to gracefully
             // shut down your server.
-            f.channel().closeFuture().sync();
+            // f.channel().closeFuture().sync();
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        int port = 8080;
-        if (args.length > 0) {
-            port = Integer.parseInt(args[0]);
-        }
-
-        new DiscardServer(port).run();
     }
 }
