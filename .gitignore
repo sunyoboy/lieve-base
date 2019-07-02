@@ -18,6 +18,7 @@
 *.iml
 *.ipr
 target
+error.2019-06-28.log
 
 ### NetBeans ###
 /nbproject/private/
