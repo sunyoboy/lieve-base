@@ -1,3 +1,16 @@
+spring:
+  application:
+    name: lieve-base
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/db_test?useSSL=false
+      username: root
+      password: moka@sun
+      driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+  profiles:
+    active: dev
 logging:
   level:
-    com.lieve.base: info
+    com: debug
+    org: debug

@@ -36,7 +36,7 @@ public class NettyClient01 {
                 });
         ChannelFuture channelFuture = bootstrap.connect(HOST, PORT).sync();
         channelFuture.channel().closeFuture().sync();
-        group.shutdownGracefully();
+        // group.shutdownGracefully();
     }
 
 }

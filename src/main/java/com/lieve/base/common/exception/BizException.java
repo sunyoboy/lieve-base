@@ -9,16 +9,16 @@ import java.lang.invoke.MethodHandles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BusinessException extends Exception {
+public class BizException extends RuntimeException {
 
     private static final Logger logger = LoggerFactory
         .getLogger(MethodHandles.lookup().lookupClass());
 
-    public BusinessException(String message) {
+    public BizException(String message) {
         super(message);
     }
 
-    public BusinessException(Throwable throwable) {
+    public BizException(Throwable throwable) {
         super(throwable);
     }
 }

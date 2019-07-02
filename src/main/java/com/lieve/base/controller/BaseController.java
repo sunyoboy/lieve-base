@@ -8,9 +8,9 @@ package com.lieve.base.controller;
 import com.lieve.base.common.enums.Season;
 import com.lieve.base.common.enums.Unit;
 import com.lieve.base.common.enums.Weekday;
-import com.lieve.base.common.exception.BusinessException;
+import com.lieve.base.common.exception.BizException;
 import com.lieve.base.service.BaseService;
-import java.io.FileNotFoundException;
+
 import java.lang.invoke.MethodHandles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +44,7 @@ public class BaseController {
     }
 
     @PostMapping("/hi")
-    public ResponseEntity queryMessage(@RequestParam int unitValue) throws BusinessException {
+    public ResponseEntity queryMessage(@RequestParam int unitValue) throws BizException {
         baseService.doStuff();
         baseService.traversal();
         Unit unit = Unit.getUnit(unitValue);
