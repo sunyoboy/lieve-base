@@ -42,19 +42,24 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public void executeTransaction() {
-        transactionTemplate.execute(new TransactionCallback() {
+        userMapper.queryUser(new User());
+        userMapper.queryUser(new User());
+        userMapper.queryUser(new User());
+        userMapper.queryUser(new User());
+        userMapper.queryUser(new User());
+        /*transactionTemplate.execute(new TransactionCallback() {
             @Override
             public Object doInTransaction(TransactionStatus transactionStatus) {
                 try {
                     userMapper.insert(User.builder().age(3).name("age").build());
-                    cityMapper.insert(City.builder().id(6).name("zhengzhou").state("open").build());
+                    cityMapper.insert(City.builder().name("zhengzhou").state("open").build());
                 } catch (Exception e) {
                     transactionStatus.setRollbackOnly();
                     log.info("e : {}",e);
                 }
                 return null;
             }
-        });
+        });*/
     }
 
     @Override

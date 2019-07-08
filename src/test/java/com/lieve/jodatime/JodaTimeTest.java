@@ -2,8 +2,10 @@ package com.lieve.jodatime;
 
 import org.joda.time.*;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.junit.Test;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * @author sunlijiang
@@ -32,5 +34,10 @@ public class JodaTimeTest {
         Months.monthsBetween(begin, end);
         Minutes.minutesBetween(begin, end);
         Hours.hoursBetween(begin, end);
+
+        Calendar calendar = Calendar.getInstance();
+        DateTime calendarDateTime = new DateTime(calendar);
+        Calendar calendar1 = calendarDateTime.toCalendar(Locale.CHINA);
+        System.out.println(calendar1);
     }
 }
