@@ -32,6 +32,7 @@ public class ThreadTest {
     @Test
     public void testT() {
         int COUNT_BITS = Integer.SIZE - 3;
+        System.out.println(-1 << COUNT_BITS);
         int value = (1 << COUNT_BITS) - 1;
         System.out.println(value);
     }
