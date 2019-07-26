@@ -24,6 +24,7 @@
 		<java.version>1.8</java.version>
 		<spring-boot-admin.version>2.0.3</spring-boot-admin.version>
 		<spring-boot.version>2.0.3</spring-boot.version>
+		<easy-rules.version>3.3.0</easy-rules.version>
 	</properties>
 
 	<dependencies>
@@ -31,6 +32,22 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>QLExpress</artifactId>
 			<version>3.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jeasy</groupId>
+			<artifactId>easy-rules-core</artifactId>
+			<version>${easy-rules.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jeasy</groupId>
+			<artifactId>easy-rules-support</artifactId>
+			<version>${easy-rules.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jeasy</groupId>
+			<artifactId>easy-rules-mvel</artifactId>
+			<version>${easy-rules.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>cn.hutool</groupId>
