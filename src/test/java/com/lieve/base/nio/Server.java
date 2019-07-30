@@ -8,12 +8,20 @@ import java.nio.channels.*;
 import java.util.Iterator;
 import java.util.Set;
 
-import static com.lieve.base.nio.Client.receiver;
 import static com.lieve.base.nio.NioConstants.BUFFER_CAPACITY;
 import static com.lieve.base.nio.NioConstants.PORT;
 import static java.util.Objects.nonNull;
 
 /**
+ * Reference
+ * https://segmentfault.com/a/1190000006824196
+ * https://www.baeldung.com/java-nio-selector
+ * https://blog.csdn.net/windsunmoon/article/details/45373457
+ * https://www.codota.com/code/java/methods/java.nio.channels.SocketChannel/read
+ * https://www.programcreek.com/java-api-examples/?class=java.nio.channels.SocketChannel&method=read
+ * https://docs.oracle.com/javase/7/docs/api/java/nio/channels/SocketChannel.html
+ * http://ifeve.com/socket-channel/
+ * https://blog.csdn.net/billluffy/article/details/78036998
  * @author sunlijiang
  * @date 2019/7/26
  */
@@ -59,7 +67,8 @@ public class Server {
                         System.out.println("a connection was established with a remote server.");
                     } else if (key.isReadable()) {
                         SocketChannel channel = (SocketChannel) key.channel();
-                        ByteBuffer buffer = (ByteBuffer) key.attachment();
+                        // ByteBuffer buffer = (ByteBuffer) key.attachment();
+                        ByteBuffer buffer = ByteBuffer.allocate(BUFFER_CAPACITY);
                         long bytesRead = channel.read(buffer);
                         if (bytesRead == -1) {
                             channel.close();
@@ -70,7 +79,8 @@ public class Server {
                         // System.out.println(receiver(channel));
                         System.out.println("a channel is ready for reading");
                     } else if (key.isValid() && key.isWritable()) {
-                        ByteBuffer buffer = (ByteBuffer)key.attachment();
+                        // ByteBuffer buffer = (ByteBuffer)key.attachment();
+                        ByteBuffer buffer = ByteBuffer.allocate(BUFFER_CAPACITY);
                         buffer.flip();
                         SocketChannel channel = (SocketChannel) key.channel();
                         channel.write(buffer);
@@ -134,11 +144,18 @@ public class Server {
              * write()方法无法保证能写多少字节到SocketChannel。
              * 所以我们重复调用write()直到Buffer没有要写的字节为止。
              */
-            while (byteBuffer.hasRemaining()) {
+            boolean channelClosed = false;
+            while (!channelClosed && byteBuffer.hasRemaining()) {
                 try {
                     channel.write(byteBuffer);
                 } catch (IOException e) {
                     e.printStackTrace();
+                    channelClosed = true;
+                    try {
+                        channel.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         }

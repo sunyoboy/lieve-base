@@ -30,7 +30,7 @@ public class Client {
             socketChannel.configureBlocking(false);
             while (socketChannel.finishConnect()) {
                 send(socketChannel, "who are you?");
-                receiver(socketChannel);
+                // receiver(socketChannel);
                 /*
                 ByteBuffer buffer = ByteBuffer.allocate(BUFFER_CAPACITY);
                 int bytesRead = socketChannel.read(buffer);
