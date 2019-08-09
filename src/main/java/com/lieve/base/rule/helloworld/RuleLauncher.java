@@ -14,9 +14,10 @@ public class RuleLauncher {
         // create facts
         Facts facts = new Facts();
 
+        HelloWorldRule helloWorldRule = new HelloWorldRule(false);
         // create rules
         Rules rules = new Rules();
-        rules.register(new HelloWorldRule());
+        rules.register(helloWorldRule);
 
         // create a rules engine and fire rules on known facts
         RulesEngine rulesEngine = new DefaultRulesEngine();

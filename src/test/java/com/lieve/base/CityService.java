@@ -9,6 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author sunlijiang
@@ -26,5 +29,6 @@ public class CityService {
     public void test() {
         City city = cityMapper.findByState("b");
         log.info("city : {}", city);
+        List<City> list = cityMapper.select("2019-08-09");
     }
 }

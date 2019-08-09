@@ -3,6 +3,9 @@ package com.lieve.base.mapper;
 import com.lieve.base.entity.City;
 import org.apache.ibatis.annotations.*;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author sunlijiang
  * @date 2019/6/29
@@ -12,6 +15,9 @@ public interface CityMapper {
 
     @Select({"SELECT * FROM CITY WHERE state = #{state}"})
     City findByState(@Param("state") String state);
+
+    @Select({"SELECT * FROM CITY WHERE update_column = #{date}"})
+    List<City> select(@Param("date") String date);
 
     /**
      *

@@ -1,7 +1,9 @@
 package com.lieve.base.rule.helloworld;
 
+import lombok.Getter;
 import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
+import org.jeasy.rules.annotation.Fact;
 import org.jeasy.rules.annotation.Rule;
 
 /**
@@ -11,6 +13,13 @@ import org.jeasy.rules.annotation.Rule;
 @Rule(name = "use engine rule")
 public class HelloWorldRule {
 
+    @Getter
+    private boolean result;
+
+    public HelloWorldRule(boolean result) {
+        this.result = result;
+    }
+
     @Condition
     public boolean when() {
         return true;
@@ -18,6 +27,7 @@ public class HelloWorldRule {
 
     @Action
     public void then() {
+        this.result = true;
         System.out.println("Hello World");
     }
 
