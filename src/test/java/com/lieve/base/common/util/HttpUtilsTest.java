@@ -2,6 +2,7 @@ package com.lieve.base.common.util;
 
 import static org.junit.Assert.*;
 
+import com.lieve.base.common.util.http.HttpThread;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;

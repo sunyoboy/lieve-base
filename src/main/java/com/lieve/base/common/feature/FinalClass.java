@@ -25,4 +25,10 @@ public final class FinalClass {
 
     Objects objects;
 
+    public static void main(String[] args) {
+        while(true) {
+            System.out.println();
+        }
+    }
+
 }
