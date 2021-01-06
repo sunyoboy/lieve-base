@@ -8,17 +8,33 @@ package com.lieve.base.service;
 import com.lieve.base.common.enums.Season;
 import com.lieve.base.common.enums.Unit;
 import com.lieve.base.common.enums.Weekday;
-import com.lieve.base.common.exception.BusinessException;
+import com.lieve.base.common.exception.BizException;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.invoke.MethodHandles;
+
+import com.lieve.base.common.util.TransactionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
 public class BaseService {
+
+    @Resource
+    private TransactionUtil transactionUtil;
+
+    private void doSome(int value) {
+        System.out.println(value);
+    }
+
+    public void handleTransaction() {
+        boolean result = transactionUtil.transact(s -> doSome(1));
+    }
 
     private static final Logger logger = LoggerFactory
         .getLogger(MethodHandles.lookup().lookupClass());
@@ -68,12 +84,12 @@ public class BaseService {
         }
     }
 
-    public void doStuff() throws BusinessException {
+    public void doStuff() throws BizException {
         try {
             InputStream inputStream = new FileInputStream("abc.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            throw new BusinessException(e);
+            throw new BizException(e);
         }
     }
 }

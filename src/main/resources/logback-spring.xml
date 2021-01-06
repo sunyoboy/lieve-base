@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
- <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>INFO</level>
-    </filter>
-    <encoder>
-      <pattern>%msg%n</pattern>
-    </encoder>
+    <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
 
-    <!-- 滚动策略 -->
-    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>info.%d.log</fileNamePattern>
-    </rollingPolicy>
-  </appender>
-  <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>ERROR</level>
-    </filter>
-    <encoder>
-      <pattern>%msg%n</pattern>
-    </encoder>
+        <!-- 滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>info.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}[${applicationName},%X{X-B3-TraceId:-},%X{userId:-}] [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
 
-    <!-- 滚动策略 -->
-    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>error.%d.log</fileNamePattern>
-    </rollingPolicy>
-  </appender>
-<!--  <logger>
+        <!-- 滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>error.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <!--  <logger>
 
-  </logger>-->
-  <root level="INFO">
-    <appender-ref ref="fileErrorLog" />
-    <appender-ref ref="fileInfoLog" />
-  </root>
+      </logger>-->
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="fileErrorLog"/>
+        <appender-ref ref="fileInfoLog"/>
+    </root>
 </configuration>
